@@ -1,3 +1,11 @@
+/* задаем переменные для шрифтов */
+:root {
+  --main-font: 'Fira Sans Condensed', sans-serif;
+  --main-font-size: 18px;
+  --main-font-color: #fff;
+  --main-background-color: #1b1919;
+}
+
 *,
 *::before,
 *::after {
@@ -9,11 +17,14 @@ html {
 }
 
 .page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: auto;
-  color: #fff;
-  font-family: 'Fira Sans Condensed', sans-serif;
-  font-size: 18px;
-  background-color: #1b1919;
+  color: var(--main-font-color);
+  font-family: var(--main-font);
+  font-size: var(--main-font-size);
+  background-color: var(--main-background-color);
   inline-size: 1200px;
   block-size: 100%;
 }
@@ -35,6 +46,10 @@ fieldset {
 ul,
 ol {
   list-style: none;
+}
+
+a {
+  color: inherit;
 }
 
 /* Кастомный скроллбар */
@@ -59,21 +74,14 @@ ol {
   block-size: 1px;
   clip-path: inset(50%);
   white-space: nowrap;
-} 
-
-/******************** page блоки ******************************************/
-.page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
+/******************** page/content блок ******************************************/
 .content {
   display: flex;
   justify-content: space-between;
   column-gap: 30px;
   width: 1140px;
-  height: 534px;
   padding: 0;
 }
 
@@ -83,7 +91,6 @@ ol {
   flex-direction: column;
   gap: 16px;
   width: 711px;
-  height: 100%;
   padding-top: 85px;
 }
 
@@ -107,39 +114,30 @@ ol {
   justify-content: space-between;
   align-items: flex-end;
   width: 100%;
-  height: 54px;
 }
 
 /* fieldset - блоки город и вермя суток */
 .search-form__fieldset {
   width: 212px;
-  height: 100%;
   border: none;
 }
 
 /* титул блоков город и время суток */
 .search-form__fieldset-title{
   margin-bottom: 5px;
-  font-family: inherit;
-  font-weight: 400;
-  font-size: 18px;
+  font: inherit;
+  color: inherit;
 }
 
 /********************** стили для text-input ***********************************/
-.search-form__textfield:focus-visible {          /* обводка text-input поля при focus-visible */                               
+.search-form__textfield:focus-visible, /* обводка поля при focus-visible */ 
+.search-form__label:has(.search-form__checkbox:focus-visible) {                                        
   outline: 1px solid #fff;
   outline-offset: 1px;
 }
 
 .search-form__fieldset:not(:first-child) {       /* центровка fieldset если он не первый */
   align-self: center;
-}
-
-.search-form__label:has(                         /* ВКЛЮЧАЕМ ОБВОДКУ ФОКУС-ВИЗИБЛ */
-  .search-form__checkbox:focus-visible
-) {
-  outline: 1px solid #fff;
-  outline-offset: 1px;
 }
 
 .search-form__textfield:focus-visible:active { /* выключаю жесткую браузерную рамку при тыке мышкой */                                     
@@ -167,14 +165,10 @@ ol {
   border-top: 1px solid #fff;
   border-bottom: 1px solid #fff;
   padding: 0;
-  color: #fff;
-
-  font-family: inherit;
-  font-weight: 400;
-  font-size: 18px;
+  font: inherit;
+  color: inherit;
   background-color: transparent;
   cursor: text;                    /* типа вроде как не надо, но пишут что лучше - на всякий случай */
-
   -webkit-appearance: none;                 /* отключаем обводку для сафари, хрома */
   appearance: none;                         /* и стандартным свойством */
 }
@@ -209,7 +203,7 @@ ol {
   height: 19px;
   margin-top: 1px;
   margin-bottom: 1px;
-  border: 1px solid #fff;
+  border: 1px solid currentColor;
   padding: 1px;
   background-color: transparent;
   cursor: pointer;
@@ -222,7 +216,7 @@ ol {
   width: 100%;
   height: 100%;
   opacity: 0;
-  background-color: #fff;
+  background-color: currentColor;
 }
 
 /* чекбокс checked */
@@ -244,7 +238,6 @@ input[type='checkbox']:checked + .search-form__pseudo-checkbox::after {
   flex-direction: column;
   gap: 20px;
   width:399px;
-  height: 541px;
   font-family: Oswald, sans-serif;
 }
 
@@ -269,9 +262,8 @@ input[type='checkbox']:checked + .search-form__pseudo-checkbox::after {
   width: 100%;
   height: 305px;
   padding-top: 3px;
-  padding-right: 3px;
+  padding-right: 7px;
   padding-left: 3px;
-  overflow-x: hidden;
   overflow-y: auto;
 }
 
@@ -280,6 +272,7 @@ input[type='checkbox']:checked + .search-form__pseudo-checkbox::after {
   display: flex;
   flex-direction: column;
   gap: 30px;
+  width: 100%;
 }
 
 .content__list-item {
@@ -298,11 +291,12 @@ input[type='checkbox']:checked + .search-form__pseudo-checkbox::after {
 .content__card-link {
   display: block;
   text-decoration: none;
+  color: inherit;
 }
 
 .content__card-link:hover {
   text-decoration: underline;
-  text-decoration-color: #fff;
+  text-decoration-color: currentColor;
   text-decoration-skip-ink: none;
   cursor: pointer;
 }
@@ -323,7 +317,7 @@ input[type='checkbox']:checked + .search-form__pseudo-checkbox::after {
 }
 
 .content__card-link:focus-visible {
-  outline: 1px solid #fff;
+  outline: 1px solid currentColor;
   outline-offset: 1px;
 }
 
@@ -340,14 +334,11 @@ input[type='checkbox']:checked + .search-form__pseudo-checkbox::after {
   width: 100%;
   margin-bottom: 6px;
   overflow: hidden;
-  color: #fff;
   font-weight: 700;
   font-size: 30px;
   line-height: 100%;
-
   text-transform: uppercase;
   text-overflow: ellipsis;
-
   /* Рисуем три точки при переполнении. без переносов */
   white-space: nowrap;
 }
@@ -355,11 +346,9 @@ input[type='checkbox']:checked + .search-form__pseudo-checkbox::after {
 .content__video-card-description {
   display: -webkit-box;  /* включает вебкит специф-ю - иначе ограничение строк не работает */
   overflow: hidden;
-  color: #fff;
-
-  font-family: 'Fira Sans Condensed', sans-serif;
-  font-weight: 400;
-  font-size: 18px;
+  font-family: var(--main-font);
+  font-weight: inherit;
+  font-size: inherit;
   line-height: 0.9em;
   text-overflow: ellipsis;
   -webkit-box-orient: vertical; /* говорим что контент идет вертикально */
@@ -369,7 +358,8 @@ input[type='checkbox']:checked + .search-form__pseudo-checkbox::after {
 
 .content__video-card-thumbnail {
   display: block;
-  min-width: 194px;
+  width: 194px;
+  max-width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
@@ -381,11 +371,11 @@ input[type='checkbox']:checked + .search-form__pseudo-checkbox::after {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #fff;
-  color: inherit;
-  font-family: 'Fira Sans Condensed', sans-serif;
-  font-weight: 700;
-  font-size: 18px;
+  height: 34px;
+  border: 1px solid currentColor;
+  color: var(--main-font-color); /* на случай если кнопка окажется вне .page */
+  font-family: var(--main-font);
+  font-size: var(--main-font-size);
   background-color: transparent;
 }
 
@@ -393,7 +383,6 @@ input[type='checkbox']:checked + .search-form__pseudo-checkbox::after {
 .search-form__submit-button {
   align-self: flex-end;
   width: 194px;
-  height: 34px;
   margin-top: 20px;
   }
 
@@ -401,57 +390,51 @@ input[type='checkbox']:checked + .search-form__pseudo-checkbox::after {
 .more-button {
   flex-shrink: 0;
   width: 100%;
-  height: 34px;
-  margin-right: 7px;
   margin-bottom: 2px;
-  margin-left: 2px;
   padding-right: 3px;
   padding-left: 3px;
 }
 
-.search-form__submit-button:hover,
-.more-button:hover {
+.button:hover {
   text-decoration: underline;
   cursor: pointer;
 }
 
-.search-form__submit-button:focus,
-.more-button:focus {
+.button:focus {
   outline: none;
 }
 
 /* в focus-visible кнопки зачем-то по макету делаются 38px - делаем.. */
 /* + смещаем надпись к верх краю */
-.more-button:focus-visible,
-.search-form__submit-button:focus-visible {
+.button:focus-visible {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   height: 38px;
+  /* т.к. убрал фиксацию высоты у родителя, а кнопка увеличивается в focus-visible,
+  чтобы блок не "подпрыгивал" компенсируем через margin-top */
+  margin-top:  -4px;
 }
 
 /* в focus-visible дорисовываем доп рамку */
 /* в конце - рисунок делаем прозрачным для кликов */
-.search-form__submit-button:focus-visible::before,
-.more-button:focus-visible::before {
+.button:focus-visible::before {
   content: '';          
   position: absolute;
   top: 2px;
   right: 2px;
   bottom: 12px;
   left: 2px;
-  border: 1px solid #fff;
+  border: 1px solid currentColor;
   pointer-events: none; /** страховка от перехвата клика если попадем точно в рамку **/
 }
 
 /* убираем рамку в момент клика */
-.search-form__submit-button:active::before, 
-.more-button:active::before {
+.button:active::before {
   content: none;
 }
 
-.search-form__submit-button:active,
-.more-button:active {
+.button:active {
   text-decoration: none;
   background: #545050;
 }
