@@ -272,7 +272,7 @@ input[type='checkbox']:checked + .search-form__pseudo-checkbox::after {
   padding-right: 3px;
   padding-left: 3px;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 /** контейнер с карточками и кнопкой **/
